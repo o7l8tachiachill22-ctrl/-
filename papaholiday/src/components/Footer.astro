@@ -1,0 +1,49 @@
+---
+const today = new Date();
+---
+
+<footer>
+	<div class="footer-content">
+		<p class="site-name">🔨 パパホリデー</p>
+		<p class="tagline">週末DIYを楽しむパパのブログ</p>
+		<p class="affiliate-notice">
+			※ 当サイトはAmazonアソシエイト・楽天アフィリエイトプログラムに参加しています。<br />
+			記事内のリンクから商品を購入すると、売上の一部が当サイトに還元されます。
+		</p>
+		<p class="copyright">&copy; {today.getFullYear()} パパホリデー All rights reserved.</p>
+	</div>
+</footer>
+<style>
+	footer {
+		padding: 2em 1em 4em 1em;
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+	.footer-content {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+	.site-name {
+		font-size: 1.2em;
+		font-weight: 700;
+		color: rgb(var(--gray-dark));
+		margin-bottom: 0.2em;
+	}
+	.tagline {
+		margin-bottom: 1em;
+		font-size: 0.9em;
+	}
+	.affiliate-notice {
+		font-size: 0.75em;
+		color: rgb(var(--gray));
+		border-top: 1px solid rgb(var(--gray-light));
+		padding-top: 1em;
+		margin-top: 1em;
+		line-height: 1.6;
+	}
+	.copyright {
+		font-size: 0.8em;
+		margin-top: 0.5em;
+	}
+</style>
