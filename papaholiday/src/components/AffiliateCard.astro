@@ -1,0 +1,87 @@
+---
+interface Props {
+	name: string;
+	description: string;
+	amazonUrl?: string;
+	rakutenUrl?: string;
+	price?: string;
+}
+
+const { name, description, amazonUrl, rakutenUrl, price } = Astro.props;
+---
+
+<div class="affiliate-card">
+	<div class="card-content">
+		<p class="product-name">🛒 {name}</p>
+		{price && <p class="price">参考価格：{price}</p>}
+		<p class="product-desc">{description}</p>
+		<div class="buttons">
+			{
+				amazonUrl && (
+					<a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" class="btn amazon">
+						Amazonで見る
+					</a>
+				)
+			}
+			{
+				rakutenUrl && (
+					<a href={rakutenUrl} target="_blank" rel="noopener noreferrer sponsored" class="btn rakuten">
+						楽天で見る
+					</a>
+				)
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.affiliate-card {
+		border: 2px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1.2em;
+		margin: 1.5em 0;
+		background: #fafafa;
+	}
+	.product-name {
+		font-size: 1.05em;
+		font-weight: 700;
+		color: rgb(var(--black));
+		margin: 0 0 0.3em;
+	}
+	.price {
+		font-size: 0.9em;
+		color: #e53935;
+		font-weight: 600;
+		margin: 0 0 0.5em;
+	}
+	.product-desc {
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+		margin: 0 0 1em;
+	}
+	.buttons {
+		display: flex;
+		gap: 0.8em;
+		flex-wrap: wrap;
+	}
+	.btn {
+		display: inline-block;
+		padding: 0.6em 1.2em;
+		border-radius: 6px;
+		text-decoration: none;
+		font-size: 0.9em;
+		font-weight: 600;
+		transition: opacity 0.2s;
+	}
+	.btn:hover {
+		opacity: 0.85;
+	}
+	.amazon {
+		background: #ff9900;
+		color: #111;
+	}
+	.rakuten {
+		background: #bf0000;
+		color: #fff;
+	}
+</style>
