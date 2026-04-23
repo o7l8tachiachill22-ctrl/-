@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600">
+  <defs>
+    <radialGradient id="skinGrad" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#FFE0B2"/>
+      <stop offset="100%" style="stop-color:#FFCC80"/>
+    </radialGradient>
+    <radialGradient id="cheekGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB3BA;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#FFB3BA;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="eyeGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" style="stop-color:#6B4C3B"/>
+      <stop offset="100%" style="stop-color:#3B2A20"/>
+    </radialGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="600" fill="#FFF8FC" rx="20"/>
+
+  <!-- Decorative stars -->
+  <text x="30" y="60" font-size="18" fill="#FFD700" opacity="0.6">★</text>
+  <text x="350" y="80" font-size="14" fill="#FF9EC4" opacity="0.6">✦</text>
+  <text x="20" y="200" font-size="12" fill="#B0C4FF" opacity="0.5">✦</text>
+  <text x="365" y="180" font-size="16" fill="#FFD700" opacity="0.5">★</text>
+  <text x="60" y="500" font-size="10" fill="#FF9EC4" opacity="0.4">✦</text>
+  <text x="330" y="520" font-size="12" fill="#B0C4FF" opacity="0.4">★</text>
+
+  <!-- Body / Torso (Pink dress) -->
+  <g filter="url(#softShadow)">
+    <!-- Dress skirt -->
+    <ellipse cx="200" cy="520" rx="110" ry="35" fill="#F48FB1"/>
+    <!-- Dress body -->
+    <path d="M130,340 Q120,420 90,520 Q150,490 200,495 Q250,490 310,520 Q280,420 270,340 Z" fill="#F06292"/>
+    <!-- Dress collar/top -->
+    <path d="M150,340 Q170,330 200,328 Q230,330 250,340 L245,360 Q220,350 200,348 Q180,350 155,360 Z" fill="#EC407A"/>
+    <!-- Dress white collar -->
+    <path d="M165,340 Q180,355 200,352 Q220,355 235,340 L228,348 Q214,360 200,358 Q186,360 172,348 Z" fill="white" opacity="0.8"/>
+    <!-- Dress sleeves -->
+    <ellipse cx="130" cy="370" rx="28" ry="20" fill="#F06292"/>
+    <ellipse cx="270" cy="370" rx="28" ry="20" fill="#F06292"/>
+    <!-- Wrists / Hands -->
+    <ellipse cx="112" cy="385" rx="14" ry="12" fill="url(#skinGrad)"/>
+    <ellipse cx="288" cy="385" rx="14" ry="12" fill="url(#skinGrad)"/>
+  </g>
+
+  <!-- Neck -->
+  <rect x="185" y="310" width="30" height="35" rx="8" fill="url(#skinGrad)"/>
+
+  <!-- Hair - back layer (dark brown/black) -->
+  <g filter="url(#softShadow)">
+    <!-- Back hair long strands -->
+    <path d="M200,130 Q280,160 300,320 Q290,310 285,280 Q295,350 285,400 Q260,380 240,340" fill="#3D2B1F" opacity="0.5"/>
+    <!-- Side bunny ear / hair accessory (right) -->
+    <ellipse cx="295" cy="165" rx="22" ry="55" fill="#4A3728" transform="rotate(20,295,165)"/>
+    <ellipse cx="295" cy="165" rx="12" ry="42" fill="#FF9EC4" transform="rotate(20,295,165)"/>
+    <!-- Top of head hair -->
+    <path d="M110,200 Q100,140 140,110 Q170,90 200,88 Q230,90 260,110 Q300,140 290,200 Z" fill="#3D2B1F"/>
+    <!-- Hair side tufts -->
+    <path d="M110,200 Q90,230 95,270 Q100,300 115,310 Q108,280 112,250 Q118,225 125,215 Z" fill="#3D2B1F"/>
+    <path d="M290,200 Q310,230 305,270 Q300,300 285,310 Q292,280 288,250 Q282,225 275,215 Z" fill="#3D2B1F"/>
+  </g>
+
+  <!-- Face -->
+  <ellipse cx="200" cy="220" rx="82" ry="88" fill="url(#skinGrad)" filter="url(#softShadow)"/>
+
+  <!-- Hair - front layer -->
+  <path d="M118,200 Q115,170 130,145 Q150,115 200,108 Q250,115 270,145 Q285,170 282,200 Q265,185 245,178 Q225,172 200,170 Q175,172 155,178 Q135,185 118,200 Z" fill="#3D2B1F"/>
+  <!-- Front hair strands / bangs -->
+  <path d="M145,178 Q138,200 142,220 Q148,195 152,178 Z" fill="#3D2B1F"/>
+  <path d="M165,172 Q158,195 163,218 Q168,193 172,172 Z" fill="#3D2B1F"/>
+  <path d="M235,172 Q242,195 237,218 Q232,193 228,172 Z" fill="#3D2B1F"/>
+  <path d="M255,178 Q262,200 258,220 Q252,195 248,178 Z" fill="#3D2B1F"/>
+
+  <!-- Left Eye -->
+  <g>
+    <ellipse cx="168" cy="225" rx="22" ry="18" fill="white"/>
+    <ellipse cx="168" cy="226" rx="15" ry="15" fill="url(#eyeGrad)"/>
+    <ellipse cx="168" cy="226" rx="8" ry="9" fill="#1A0F0A"/>
+    <ellipse cx="163" cy="220" rx="4" ry="4" fill="white" opacity="0.9"/>
+    <ellipse cx="173" cy="230" rx="2" ry="2" fill="white" opacity="0.6"/>
+    <!-- Eyelash top -->
+    <path d="M148,215 Q158,210 178,213 Q168,207 158,208 Z" fill="#1A0F0A"/>
+    <!-- Eyelash bottom -->
+    <path d="M150,235 Q158,240 175,237" stroke="#3D2B1F" stroke-width="1.5" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Right Eye -->
+  <g>
+    <ellipse cx="232" cy="225" rx="22" ry="18" fill="white"/>
+    <ellipse cx="232" cy="226" rx="15" ry="15" fill="url(#eyeGrad)"/>
+    <ellipse cx="232" cy="226" rx="8" ry="9" fill="#1A0F0A"/>
+    <ellipse cx="227" cy="220" rx="4" ry="4" fill="white" opacity="0.9"/>
+    <ellipse cx="237" cy="230" rx="2" ry="2" fill="white" opacity="0.6"/>
+    <!-- Eyelash top -->
+    <path d="M214,215 Q222,210 244,213 Q234,207 224,208 Z" fill="#1A0F0A"/>
+    <!-- Eyelash bottom -->
+    <path d="M215,235 Q224,240 242,237" stroke="#3D2B1F" stroke-width="1.5" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Eyebrows -->
+  <path d="M148,205 Q160,200 180,204" stroke="#3D2B1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M220,204 Q240,200 252,205" stroke="#3D2B1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Nose (subtle) -->
+  <path d="M196,252 Q200,258 204,252" stroke="#D4956A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Mouth -->
+  <path d="M183,272 Q192,282 200,284 Q208,282 217,272" stroke="#E07070" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M188,272 Q200,268 212,272" stroke="#E07070" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Cheeks blush -->
+  <ellipse cx="148" cy="252" rx="22" ry="14" fill="url(#cheekGrad)"/>
+  <ellipse cx="252" cy="252" rx="22" ry="14" fill="url(#cheekGrad)"/>
+
+  <!-- Shoes -->
+  <ellipse cx="165" cy="545" rx="35" ry="16" fill="#FFCC80"/>
+  <ellipse cx="235" cy="545" rx="35" ry="16" fill="#FFCC80"/>
+  <rect x="134" y="530" width="62" height="18" rx="6" fill="#FFB74D"/>
+  <rect x="204" y="530" width="62" height="18" rx="6" fill="#FFB74D"/>
+
+  <!-- Character name label -->
+  <rect x="120" y="572" width="160" height="24" rx="12" fill="#F48FB1" opacity="0.7"/>
+  <text x="200" y="589" text-anchor="middle" font-family="serif" font-size="13" fill="white" font-weight="bold">紬妃ちゃん ✦</text>
+</svg>
