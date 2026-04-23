@@ -10,11 +10,17 @@ import gemini_client
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Google Gemini API CLI")
     parser.add_argument("prompt", nargs="?", help="Prompt to send to Gemini")
-    parser.add_argument("--model", default="gemini-1.5-flash", help="Gemini model to use")
+    parser.add_argument(
+        "--model", default="gemini-1.5-flash", help="Gemini model to use"
+    )
     parser.add_argument("--system", help="System instruction")
     parser.add_argument("--stream", action="store_true", help="Stream the response")
-    parser.add_argument("--list-models", action="store_true", help="List available models")
-    parser.add_argument("--interactive", "-i", action="store_true", help="Interactive chat mode")
+    parser.add_argument(
+        "--list-models", action="store_true", help="List available models"
+    )
+    parser.add_argument(
+        "--interactive", "-i", action="store_true", help="Interactive chat mode"
+    )
     return parser.parse_args()
 
 
@@ -22,6 +28,7 @@ def interactive_mode(model: str, system: str | None) -> None:
     print(f"Gemini interactive chat ({model}). Type 'quit' or 'exit' to stop.\n")
 
     import google.generativeai as genai
+
     kwargs = {}
     if system:
         kwargs["system_instruction"] = system
@@ -63,11 +70,15 @@ def main() -> None:
         sys.exit(1)
 
     if args.stream:
-        for chunk in gemini_client.stream_chat(args.prompt, model=args.model, system_instruction=args.system):
+        for chunk in gemini_client.stream_chat(
+            args.prompt, model=args.model, system_instruction=args.system
+        ):
             print(chunk, end="", flush=True)
         print()
     else:
-        result = gemini_client.chat(args.prompt, model=args.model, system_instruction=args.system)
+        result = gemini_client.chat(
+            args.prompt, model=args.model, system_instruction=args.system
+        )
         print(result)
 
 

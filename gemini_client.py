@@ -42,4 +42,8 @@ def stream_chat(
 
 
 def list_models() -> list[str]:
-    return [m.name for m in genai.list_models() if "generateContent" in m.supported_generation_methods]
+    return [
+        m.name
+        for m in genai.list_models()
+        if "generateContent" in m.supported_generation_methods
+    ]
