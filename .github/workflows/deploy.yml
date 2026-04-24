@@ -27,8 +27,7 @@ jobs:
           npm run build
 
       - name: Cloudflare Pagesにデプロイ
-        working-directory: papaholiday
-        run: npx wrangler pages deploy dist --project-name=papaholiday-site --branch=main --commit-dirty=true
+        run: npx wrangler pages deploy papaholiday/dist --project-name=papaholiday-site --branch=main --commit-dirty=true
         env:
           CLOUDFLARE_API_KEY: ${{ secrets.CF_API_KEY }}
           CLOUDFLARE_EMAIL: ${{ secrets.CF_EMAIL }}
