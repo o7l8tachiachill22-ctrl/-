@@ -1,2 +1,5 @@
 name = "papaholiday"
 pages_build_output_dir = "papaholiday/dist"
+
+[build]
+command = "cd papaholiday && npm install && npm run build"
