@@ -27,10 +27,9 @@ jobs:
           npm run build
 
       - name: Cloudflare Pagesにデプロイ
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: papaholiday-site
-          directory: papaholiday/dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: papaholiday
+        run: npx wrangler pages deploy dist --project-name=papaholiday-site --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_KEY: ${{ secrets.CF_API_KEY }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CF_EMAIL }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
