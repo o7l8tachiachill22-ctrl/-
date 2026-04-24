@@ -1,0 +1,28 @@
+name: パパホリデー Cloudflare Pages デプロイ
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: ビルド & デプロイ
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 依存関係インストール & ビルド
+        run: |
+          cd papaholiday
+          npm install
+          npm run build
+
+      - name: Cloudflare Pagesにデプロイ
+        run: npx wrangler pages deploy papaholiday/dist --project-name=papaholiday-site --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
