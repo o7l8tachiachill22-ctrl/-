@@ -8,31 +8,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: ビルド & デプロイ
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: papaholiday/package-lock.json
 
-      - name: バージョン確認
+      - name: 依存関係インストール & ビルド
+        working-directory: papaholiday
         run: |
-          node --version
-          npm --version
-          ls papaholiday/
-
-      - name: 依存関係インストール
-        working-directory: papaholiday
-        run: npm install
-
-      - name: ビルド
-        working-directory: papaholiday
-        run: npm run build
+          npm ci
+          npm run build
 
       - name: Cloudflare Pagesにデプロイ
-        run: |
-          npx wrangler pages project create papaholiday-site --production-branch=main || true
-          npx wrangler pages deploy papaholiday/dist --project-name=papaholiday-site --branch=main --commit-dirty=true
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: papaholiday-site
+          directory: papaholiday/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
