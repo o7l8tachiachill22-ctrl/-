@@ -3,9 +3,15 @@ import numpy as np
 from pathlib import Path
 
 CASCADES = [
-    cv2.CascadeClassifier("/usr/local/lib/python3.11/dist-packages/cv2/data/haarcascade_frontalface_default.xml"),
-    cv2.CascadeClassifier("/usr/local/lib/python3.11/dist-packages/cv2/data/haarcascade_frontalface_alt2.xml"),
-    cv2.CascadeClassifier("/usr/local/lib/python3.11/dist-packages/cv2/data/haarcascade_frontalface_alt.xml"),
+    cv2.CascadeClassifier(
+        "/usr/local/lib/python3.11/dist-packages/cv2/data/haarcascade_frontalface_default.xml"
+    ),
+    cv2.CascadeClassifier(
+        "/usr/local/lib/python3.11/dist-packages/cv2/data/haarcascade_frontalface_alt2.xml"
+    ),
+    cv2.CascadeClassifier(
+        "/usr/local/lib/python3.11/dist-packages/cv2/data/haarcascade_frontalface_alt.xml"
+    ),
 ]
 
 
@@ -26,7 +32,10 @@ def detect_faces_all_rotations(img_gray):
 
         for cascade in CASCADES:
             faces = cascade.detectMultiScale(
-                rotated, scaleFactor=1.08, minNeighbors=4, minSize=(min_face, min_face),
+                rotated,
+                scaleFactor=1.08,
+                minNeighbors=4,
+                minSize=(min_face, min_face),
             )
             if len(faces) > len(best_faces):
                 best_faces = faces
@@ -61,9 +70,12 @@ def anime_filter(img):
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     edges = cv2.adaptiveThreshold(
-        cv2.medianBlur(gray, 7), 255,
-        cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,
-        blockSize=9, C=9,
+        cv2.medianBlur(gray, 7),
+        255,
+        cv2.ADAPTIVE_THRESH_MEAN_C,
+        cv2.THRESH_BINARY,
+        blockSize=9,
+        C=9,
     )
     edges_bgr = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
     anime = cv2.bitwise_and(stylized, edges_bgr)
@@ -75,7 +87,11 @@ def anime_filter(img):
 
 def mosaic(img, block_size=20):
     h, w = img.shape[:2]
-    small = cv2.resize(img, (max(1, w // block_size), max(1, h // block_size)), interpolation=cv2.INTER_LINEAR)
+    small = cv2.resize(
+        img,
+        (max(1, w // block_size), max(1, h // block_size)),
+        interpolation=cv2.INTER_LINEAR,
+    )
     return cv2.resize(small, (w, h), interpolation=cv2.INTER_NEAREST)
 
 
@@ -83,9 +99,8 @@ def build_person_mask_simple(h, w, faces):
     """Create a soft elliptical mask covering estimated person body from face boxes."""
     mask = np.zeros((h, w), dtype=np.float32)
 
-    for (fx, fy, fw, fh) in faces:
+    for fx, fy, fw, fh in faces:
         cx = fx + fw // 2
-        cy = fy + fh // 2
 
         # Estimate person body: width ~2.5x face, height ~7x face
         person_w = int(fw * 2.8)
@@ -97,8 +112,16 @@ def build_person_mask_simple(h, w, faces):
 
         # Draw a filled ellipse for the person region
         person_mask = np.zeros((h, w), dtype=np.float32)
-        cv2.ellipse(person_mask, (body_cx, body_cy),
-                    (person_w // 2, person_h // 2), 0, 0, 360, 1.0, -1)
+        cv2.ellipse(
+            person_mask,
+            (body_cx, body_cy),
+            (person_w // 2, person_h // 2),
+            0,
+            0,
+            360,
+            1.0,
+            -1,
+        )
         mask = np.maximum(mask, person_mask)
 
     # Gaussian blur for soft edges
@@ -126,11 +149,12 @@ def process_image(input_path: str, output_path: str):
         pm3 = np.stack([person_mask_f] * 3, axis=2)
 
         # Composite: person original blended over mosaic background
-        result = (img_rot.astype(np.float32) * pm3 +
-                  bg_mosaic.astype(np.float32) * (1 - pm3)).astype(np.uint8)
+        result = (
+            img_rot.astype(np.float32) * pm3 + bg_mosaic.astype(np.float32) * (1 - pm3)
+        ).astype(np.uint8)
 
         # Apply anime filter to each face region
-        for (x, y, fw, fh) in faces:
+        for x, y, fw, fh in faces:
             pad_x = int(fw * 0.4)
             pad_y = int(fh * 0.5)
             x1 = max(0, x - pad_x)
@@ -143,13 +167,23 @@ def process_image(input_path: str, output_path: str):
 
             rh, rw = y2 - y1, x2 - x1
             em = np.zeros((rh, rw), dtype=np.float32)
-            cv2.ellipse(em, (rw // 2, rh // 2),
-                        (max(1, rw // 2 - 4), max(1, rh // 2 - 4)), 0, 0, 360, 1.0, -1)
+            cv2.ellipse(
+                em,
+                (rw // 2, rh // 2),
+                (max(1, rw // 2 - 4), max(1, rh // 2 - 4)),
+                0,
+                0,
+                360,
+                1.0,
+                -1,
+            )
             em = cv2.GaussianBlur(em, (25, 25), 0)
             em3 = np.stack([em] * 3, axis=2)
 
             region = result[y1:y2, x1:x2].astype(np.float32)
-            result[y1:y2, x1:x2] = (anime_face.astype(np.float32) * em3 + region * (1 - em3)).astype(np.uint8)
+            result[y1:y2, x1:x2] = (
+                anime_face.astype(np.float32) * em3 + region * (1 - em3)
+            ).astype(np.uint8)
     else:
         print("  No faces found — applying mosaic to full image")
         result = bg_mosaic
