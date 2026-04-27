@@ -3,7 +3,6 @@
 import os
 import re
 from typing import Optional
-from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -22,13 +21,15 @@ class MoneyForwardClient:
         if not self.email or not self.password:
             raise ValueError("MF_EMAIL and MF_PASSWORD must be set")
         self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            )
-        })
+        self.session.headers.update(
+            {
+                "User-Agent": (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/124.0.0.0 Safari/537.36"
+                )
+            }
+        )
         self._logged_in = False
 
     def login(self) -> None:
@@ -76,10 +77,12 @@ class MoneyForwardClient:
             name_el = row.select_one(".account-name, td.name")
             balance_el = row.select_one(".balance, td.balance")
             if name_el and balance_el:
-                accounts.append({
-                    "name": name_el.get_text(strip=True),
-                    "balance": _parse_amount(balance_el),
-                })
+                accounts.append(
+                    {
+                        "name": name_el.get_text(strip=True),
+                        "balance": _parse_amount(balance_el),
+                    }
+                )
 
         return {
             "total_assets": total_assets,
@@ -102,12 +105,16 @@ class MoneyForwardClient:
             category_el = row.select_one(".category, td.category")
 
             if date_el and content_el and amount_el:
-                transactions.append({
-                    "date": date_el.get_text(strip=True),
-                    "content": content_el.get_text(strip=True),
-                    "amount": amount_el.get_text(strip=True),
-                    "category": category_el.get_text(strip=True) if category_el else "",
-                })
+                transactions.append(
+                    {
+                        "date": date_el.get_text(strip=True),
+                        "content": content_el.get_text(strip=True),
+                        "amount": amount_el.get_text(strip=True),
+                        "category": category_el.get_text(strip=True)
+                        if category_el
+                        else "",
+                    }
+                )
 
         return transactions
 
@@ -124,7 +131,11 @@ class MoneyForwardClient:
         if assets["accounts"]:
             lines.append("【口座残高】")
             for acct in assets["accounts"]:
-                balance = f"{acct['balance']:,} 円" if acct["balance"] is not None else "取得不可"
+                balance = (
+                    f"{acct['balance']:,} 円"
+                    if acct["balance"] is not None
+                    else "取得不可"
+                )
                 lines.append(f"  {acct['name']}: {balance}")
             lines.append("")
 

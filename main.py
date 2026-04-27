@@ -24,14 +24,19 @@ def parse_args() -> argparse.Namespace:
 
     mf_group = parser.add_argument_group("Money Forward ME")
     mf_group.add_argument(
-        "--mf-assets", action="store_true", help="Show asset summary from Money Forward ME"
+        "--mf-assets",
+        action="store_true",
+        help="Show asset summary from Money Forward ME",
     )
     mf_group.add_argument(
-        "--mf-transactions", action="store_true", help="Show recent transactions from Money Forward ME"
+        "--mf-transactions",
+        action="store_true",
+        help="Show recent transactions from Money Forward ME",
     )
     mf_group.add_argument(
-        "--mf-analyze", action="store_true",
-        help="Fetch Money Forward ME data and analyze with Gemini"
+        "--mf-analyze",
+        action="store_true",
+        help="Fetch Money Forward ME data and analyze with Gemini",
     )
 
     return parser.parse_args()
@@ -81,7 +86,11 @@ def handle_mf_commands(args: argparse.Namespace) -> bool:
         if assets["accounts"]:
             print("【口座残高】")
             for acct in assets["accounts"]:
-                balance = f"{acct['balance']:,} 円" if acct["balance"] is not None else "取得不可"
+                balance = (
+                    f"{acct['balance']:,} 円"
+                    if acct["balance"] is not None
+                    else "取得不可"
+                )
                 print(f"  {acct['name']}: {balance}")
         return True
 
