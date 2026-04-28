@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://papaholiday.pages.dev/sitemap.xml
