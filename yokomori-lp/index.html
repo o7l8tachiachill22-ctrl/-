@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>横森自動車整備工場 | 地域の皆さまのカーライフをやさしくサポート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brown: #8B5E3C;
+      --brown-light: #C49A6C;
+      --orange: #E07B39;
+      --cream: #FAF6F0;
+      --dark: #2C2318;
+      --gray: #6B6B6B;
+      --border: #E8DDD0;
+      --green: #4A7C59;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 13px;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--orange); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: white !important;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .nav-cta:hover { background: var(--brown) !important; color: white !important; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      margin-top: 60px;
+      height: calc(100vh - 60px);
+      min-height: 500px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.35) 100%);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: white;
+      opacity: 0.7;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===== SECTION COMMON ===== */
+    section {
+      padding: 80px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.9;
+      max-width: 600px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--orange);
+      margin: 20px 0 40px;
+      border-radius: 2px;
+    }
+
+    /* ===== INTRO ===== */
+    .intro {
+      background: white;
+      padding: 0;
+      max-width: 100%;
+    }
+
+    .intro-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .intro-text h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      color: var(--dark);
+    }
+
+    .intro-text p {
+      font-size: 14px;
+      line-height: 2;
+      color: var(--gray);
+    }
+
+    .intro-image {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .intro-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      height: 320px;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-wrap {
+      background: var(--cream);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .service-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.9;
+    }
+
+    /* ===== PRICE ===== */
+    .price-wrap {
+      background: white;
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .price-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    .price-table th {
+      background: var(--brown);
+      color: white;
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .price-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      color: var(--dark);
+    }
+
+    .price-table tr:nth-child(even) td {
+      background: var(--cream);
+    }
+
+    .price-table .price-col {
+      color: var(--orange);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 16px;
+      line-height: 1.8;
+    }
+
+    /* ===== WHY ===== */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .why-card {
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .why-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 36px;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .why-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.9;
+    }
+
+    /* ===== ACCESS ===== */
+    .access-wrap {
+      background: white;
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .access-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      align-items: start;
+    }
+
+    .access-info dl {
+      display: grid;
+      gap: 16px;
+    }
+
+    .access-info dt {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .access-info dd {
+      font-size: 14px;
+      color: var(--dark);
+      line-height: 1.8;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .map-placeholder {
+      background: var(--cream);
+      border-radius: 8px;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      font-size: 13px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-wrap {
+      background: var(--brown);
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .contact-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .contact-inner .section-label {
+      color: var(--brown-light);
+    }
+
+    .contact-inner .section-title {
+      color: white;
+    }
+
+    .contact-inner .section-desc {
+      color: rgba(255,255,255,0.7);
+      margin: 0 auto 48px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 32px 24px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .contact-card:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .contact-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .contact-card .value {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .contact-form {
+      margin-top: 48px;
+      background: white;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: left;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-form h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: var(--dark);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--orange);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 4px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover { background: var(--brown); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 640px) {
+      nav { display: none; }
+
+      .intro-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 48px 20px;
+      }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .access-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-form { padding: 24px 20px; }
+
+      section { padding: 48px 20px; }
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">横森自動車整備工場</div>
+    <nav>
+      <a href="#services">サービス</a>
+      <a href="#price">料金</a>
+      <a href="#access">アクセス</a>
+      <a href="#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-img" src="1000016354.png" alt="横森自動車整備工場 外観">
+    <div class="hero-overlay"></div>
+    <div class="hero-scroll">SCROLL</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-inner fade-in">
+      <div class="intro-text">
+        <p class="section-label">About Us</p>
+        <h2>地域に根ざした<br>「かかりつけ整備工場」</h2>
+        <div class="divider"></div>
+        <p>創業以来、地域の皆さまのカーライフに寄り添ってきました。小さな修理から車検・メンテナンスまで、親切・丁寧な対応で末永いお付き合いを大切にしています。<br><br>「どこに相談すればいいかわからない」そんな時こそ、気軽にご連絡ください。</p>
+      </div>
+      <div class="intro-image">
+        <img src="1000016354.png" alt="工場外観">
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="services-wrap" id="services">
+    <section>
+      <p class="section-label">Services</p>
+      <h2 class="section-title">対応サービス一覧</h2>
+      <div class="divider"></div>
+      <p class="section-desc">車のことなら、なんでもお気軽にご相談ください。</p>
+
+      <div class="services-grid fade-in">
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3>車検・点検</h3>
+          <p>安心・丁寧な車検で愛車をしっかりサポート。法定点検から定期点検まで幅広く対応しています。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>一般整備・修理</h3>
+          <p>エンジン・足回り・電装系まで幅広く対応。「変な音がする」「調子が悪い」などお気軽にどうぞ。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚙</div>
+          <h3>新車・中古車販売</h3>
+          <p>ご希望に合った一台をご提案します。購入後のアフターフォローも安心してお任せください。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤝</div>
+          <h3>地域密着の安心対応</h3>
+          <p>地元に長年根ざした工場だからこそ、気軽に相談できる関係を大切にしています。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PRICE -->
+  <div class="price-wrap" id="price">
+    <div class="price-inner fade-in">
+      <p class="section-label">Price</p>
+      <h2 class="section-title">料金の目安</h2>
+      <div class="divider"></div>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>サービス内容</th>
+            <th>料金目安</th>
+            <th>備考</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>車検（軽自動車）</td>
+            <td class="price-col">¥40,000〜</td>
+            <td>法定費用別途</td>
+          </tr>
+          <tr>
+            <td>車検（普通車）</td>
+            <td class="price-col">¥50,000〜</td>
+            <td>法定費用別途</td>
+          </tr>
+          <tr>
+            <td>法定12ヶ月点検</td>
+            <td class="price-col">¥10,000〜</td>
+            <td>部品交換別途</td>
+          </tr>
+          <tr>
+            <td>オイル交換</td>
+            <td class="price-col">¥3,000〜</td>
+            <td>オイル代含む</td>
+          </tr>
+          <tr>
+            <td>タイヤ交換（4本）</td>
+            <td class="price-col">¥4,000〜</td>
+            <td>タイヤ代別途</td>
+          </tr>
+          <tr>
+            <td>バッテリー交換</td>
+            <td class="price-col">¥8,000〜</td>
+            <td>バッテリー代含む</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="price-note">※上記はすべて目安金額です。車種・状態により異なります。まずはお気軽にお見積りをご依頼ください。</p>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section class="fade-in">
+    <p class="section-label">Why Choose Us</p>
+    <h2 class="section-title">選ばれる3つの理由</h2>
+    <div class="divider"></div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>明確な料金説明</h3>
+        <p>作業前に必ずお見積りをご提示。追加費用が発生する場合も事前にご説明します。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>親切・丁寧な対応</h3>
+        <p>車に詳しくない方でも安心。わかりやすい言葉でご説明します。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>地域密着の信頼</h3>
+        <p>長年地域に根ざした実績。お客様との末永いお付き合いを大切にしています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <div class="access-wrap" id="access">
+    <div class="access-inner fade-in">
+      <p class="section-label">Access</p>
+      <h2 class="section-title">店舗情報・アクセス</h2>
+      <div class="divider"></div>
+
+      <div class="access-grid">
+        <div class="access-info">
+          <dl>
+            <div>
+              <dt>店舗名</dt>
+              <dd>横森自動車整備工場</dd>
+            </div>
+            <div>
+              <dt>住所</dt>
+              <dd>〒407-0174<br>山梨県韮崎市穂坂町三ツ澤1258</dd>
+            </div>
+            <div>
+              <dt>電話番号</dt>
+              <dd>000-000-0000</dd>
+            </div>
+            <div>
+              <dt>営業時間</dt>
+              <dd>月〜土　8:00 〜 18:00<br>定休日：日曜・祝日</dd>
+            </div>
+          </dl>
+        </div>
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); height:280px;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.2!2d138.4474!3d35.6971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601c09be4ad3ba49%3A0x8e26bc66553c7d8b!2z5qCq5byP5Lya56S-IOaoiveoquOBv-WKqOiKseeahOaVuOaVuOihg-WcuuWgtA!5e0!3m2!1sja!2sjp!4v1714550000000!5m2!1sja!2sjp"
+            width="100%" height="280" style="border:0; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="横森自動車整備工場 地図">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-wrap" id="contact">
+    <div class="contact-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="divider" style="margin: 20px auto 24px; background: var(--brown-light);"></div>
+      <p class="section-desc">お気軽にご連絡ください。お見積りは無料です。</p>
+
+      <div class="contact-grid">
+        <a href="tel:000-000-0000" class="contact-card">
+          <div class="icon">📞</div>
+          <h3>電話でのお問い合わせ</h3>
+          <div class="value">000-000-0000</div>
+        </a>
+        <div class="contact-card" style="cursor: default;">
+          <div class="icon">🕐</div>
+          <h3>受付時間</h3>
+          <div class="value" style="font-size: 16px; line-height: 1.6;">月〜土<br>8:00 〜 18:00</div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-in">
+        <h3>メールでのお問い合わせ</h3>
+        <div class="form-group">
+          <label>お名前 *</label>
+          <input type="text" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>電話番号</label>
+          <input type="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス *</label>
+          <input type="email" placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>車検・点検について</option>
+            <option>修理・整備について</option>
+            <option>車両販売について</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>メッセージ</label>
+          <textarea placeholder="ご質問・ご相談内容をご記入ください"></textarea>
+        </div>
+        <button class="submit-btn">送信する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 横森自動車整備工場. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Fade in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
