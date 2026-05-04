@@ -1,0 +1,50 @@
+name: IndexNow - 新記事をGoogleに通知
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'papaholiday/src/content/blog/**'
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 追加・変更された記事のURLを取得
+        id: get_urls
+        run: |
+          # 変更されたブログ記事ファイルを取得
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'papaholiday/src/content/blog/*.mdx' 'papaholiday/src/content/blog/*.md')
+          echo "Changed files: $CHANGED"
+
+          URLS=""
+          for FILE in $CHANGED; do
+            # ファイル名からスラッグを取得 (例: diy-debut-electric-driver.mdx -> diy-debut-electric-driver)
+            SLUG=$(basename "$FILE" | sed 's/\.[^.]*$//')
+            URL="https://papaholiday.pages.dev/blog/${SLUG}/"
+            URLS="${URLS}\"${URL}\","
+          done
+
+          # 末尾のカンマを削除
+          URLS=$(echo "$URLS" | sed 's/,$//')
+          echo "urls=$URLS" >> $GITHUB_OUTPUT
+          echo "URLs to index: $URLS"
+
+      - name: IndexNowにURLを送信
+        if: steps.get_urls.outputs.urls != ''
+        run: |
+          curl -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "papaholiday.pages.dev",
+              "key": "ef13543c050f460ca21394dbc5885b7e",
+              "keyLocation": "https://papaholiday.pages.dev/ef13543c050f460ca21394dbc5885b7e.txt",
+              "urlList": [${{ steps.get_urls.outputs.urls }}]
+            }' \
+            -w "\nHTTP Status: %{http_code}\n"
