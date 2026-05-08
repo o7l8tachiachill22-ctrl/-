@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>築古住宅を買う前に知っておきたい7つの注意点｜35年物件を買ったDIYパパの実体験</title>
+<meta name="description" content="築35年の木造住宅を購入してDIYリノベ中の私が、実体験をもとに築古住宅購入の注意点を7つ解説。耐震・シロアリ・ローン審査・再建築不可など「買ってから後悔しない」ための具体的チェックリスト付き。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1611;
+    --paper: #faf8f3;
+    --warm: #f5f0e8;
+    --accent: #c17f3a;
+    --accent-light: #e8c98a;
+    --accent-dark: #8b5a1f;
+    --danger: #c0392b;
+    --safe: #27703f;
+    --muted: #7a7060;
+    --border: #d5cbb8;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    background: var(--ink);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .site-header .logo {
+    font-family: var(--serif);
+    color: var(--accent-light);
+    font-size: 15px;
+    letter-spacing: .05em;
+  }
+  .site-header .tagline {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .hero {
+    background: var(--ink);
+    padding: 56px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(193,127,58,.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-label {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    color: #fff;
+    font-size: clamp(22px, 5vw, 32px);
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: .02em;
+    margin-bottom: 20px;
+  }
+  .hero-meta {
+    color: var(--muted);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .lead-box {
+    background: var(--warm);
+    border-left: 4px solid var(--accent);
+    padding: 24px 24px;
+    margin: 40px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .lead-box p {
+    font-size: 15px;
+    color: #3a3226;
+    line-height: 1.9;
+  }
+
+  .toc {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    margin: 36px 0;
+  }
+  .toc-title {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--muted);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc ol li {
+    counter-increment: toc;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .toc ol li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--serif);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .toc ol li a {
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.5;
+    border-bottom: 1px dotted var(--border);
+  }
+  .toc ol li a:hover { color: var(--accent); }
+
+  section { margin: 56px 0; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    position: relative;
+  }
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin: 32px 0 12px;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+  }
+
+  p { margin-bottom: 16px; }
+
+  .point-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 28px 0;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .point-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+  .point-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+  .point-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+  }
+  .point-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: .06em;
+  }
+  .badge-danger { background: #fde8e6; color: var(--danger); }
+  .badge-warn { background: #fef5e4; color: #b7680a; }
+  .badge-info { background: #e8f4fd; color: #1a6896; }
+
+  .experience-box {
+    background: linear-gradient(135deg, #fdf9f0, #f8f2e4);
+    border: 1px solid var(--accent-light);
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .experience-box::before {
+    content: '私の体験談';
+    position: absolute;
+    top: -11px;
+    left: 20px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 12px;
+    border-radius: 20px;
+    letter-spacing: .06em;
+  }
+  .experience-box p {
+    font-size: 14.5px;
+    color: #4a3d28;
+    margin: 0;
+    line-height: 1.85;
+  }
+
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    padding: 10px 14px;
+    background: var(--warm);
+    border-radius: 6px;
+  }
+  .checklist li .check-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--safe);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .checklist li.danger .check-icon { background: var(--danger); }
+
+  .warn-box {
+    background: #fef5e4;
+    border: 1px solid #f0c060;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .warn-box .warn-title {
+    font-weight: 700;
+    color: #8b5a00;
+    margin-bottom: 6px;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 24px 0;
+  }
+  .summary-table th {
+    background: var(--ink);
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .summary-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .summary-table tr:nth-child(even) td { background: var(--warm); }
+
+  .cta-box {
+    background: var(--ink);
+    border-radius: 12px;
+    padding: 36px 28px;
+    margin: 48px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(193,127,58,.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-box h3 {
+    font-family: var(--serif);
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .cta-box p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: .05em;
+    transition: background .2s;
+  }
+  .cta-btn:hover { background: var(--accent-dark); }
+
+  .profile-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 48px 0;
+  }
+  .profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .profile-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .profile-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: var(--muted);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12px;
+    margin-top: 80px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  strong { color: var(--accent-dark); font-weight: 700; }
+  em { color: var(--danger); font-style: normal; font-weight: 700; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 40px 20px 36px; }
+    .container { padding: 0 16px; }
+    .point-card { padding: 22px 18px; }
+    .profile-box { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="logo"><a href="/" style="color:inherit;text-decoration:none;">🪚 パパの日曜工務店</a></div>
+    <div class="tagline">築古住宅をDIYでリノベする記録</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-label">実体験レポート</span>
+    <h1>築古住宅を買う前に知っておきたい<br>7つの注意点</h1>
+    <div class="hero-meta">
+      <span>📅 2024年最新</span>
+      <span>🕐 読了目安：約8分</span>
+      <span>✍️ DIYパパ（築35年物件オーナー）</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="lead-box">
+    <p>「安い！立地もいい！」と飛びついた築古住宅。でも購入後に「こんな落とし穴があったの？」と後悔する方が後を絶ちません。私も2023年に築35年の木造住宅を購入して、今まさにDIYリノベーションの真っ最中です。実際に買って気づいたことも含め、<strong>「買う前に知っておけばよかった」注意点を7つ</strong>、正直にお伝えします。</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">📋 この記事の目次</div>
+    <ol>
+      <li><a href="#point1">耐震基準の「1981年問題」を必ず確認する</a></li>
+      <li><a href="#point2">シロアリと腐朽は「見えない部分」に潜む</a></li>
+      <li><a href="#point3">再建築不可物件という致命的なリスク</a></li>
+      <li><a href="#point4">リフォーム費用は「買値」と同額を覚悟する</a></li>
+      <li><a href="#point5">住宅ローン審査は築古に厳しい</a></li>
+      <li><a href="#point6">境界線と私道の問題は必ず書面で確認</a></li>
+      <li><a href="#point7">ホームインスペクションは必須の「保険」</a></li>
+    </ol>
+  </div>
+
+  <section>
+    <h2>そもそも、なぜ築古住宅は人気なのか</h2>
+    <p>新築一戸建ての平均価格は今や4,000〜5,000万円台。そんな時代だからこそ、<strong>1,000〜2,000万円台で購入できる築古住宅</strong>に注目が集まっています。「安く買ってリノベーション」という選択肢は、確かに魅力的です。</p>
+    <p>さらに、もう一つ大きな背景があります。日本では少子高齢化と人口減少が進み、<strong>空き家の数が年々増え続けています</strong>。2023年の総務省調査では、全国の空き家は900万戸を超えました。つまり、選べる物件の数が増えているということ。以前は「いい築古物件はすぐ売れてしまう」時代でしたが、今はじっくり比較して選べる環境が整いつつあるのです。</p>
+    <p>でも、安いには理由があります。その理由を事前に把握できているかどうかで、「お得な買い物」になるか「後悔する買い物」になるかが決まるのです。</p>
+    <p>実は、築古住宅の注意点には「順番」があります。まず「絶対アウトな物件を除外する」、次に「コストを正確に試算する」——この順番を守るだけで、リスクが劇的に下がります。</p>
+  </section>
+
+  <section id="point1">
+    <div class="point-card">
+      <div class="point-num">1</div>
+      <div class="point-title">耐震基準の「1981年問題」を必ず確認する <span class="badge badge-danger">最重要</span></div>
+      <p>築古住宅を選ぶとき、最初に確認すべきは<strong>耐震基準</strong>です。日本では1981年（昭和56年）6月に建築基準法が大幅改正され、「新耐震基準」が導入されました。</p>
+      <p>この日付が、購入判断の大きな分岐点になります。</p>
+      <ul class="checklist">
+        <li><span class="check-icon">旧</span>旧耐震基準（1981年以前）：震度5強に耐える設計。震度6〜7では倒壊リスクあり</li>
+        <li><span class="check-icon">新</span>新耐震基準（1981年以降）：震度6強〜7でも倒壊しない設計が義務化</li>
+        <li class="danger"><span class="check-icon danger">!</span>2000年以前の物件：新耐震基準でも接合部の規定が甘く、2000年改正後の物件と比べると耐震性が劣る場合がある</li>
+      </ul>
+      <div class="experience-box">
+        <p>私が購入した築35年（1988年築）の物件は、ギリギリ新耐震基準内でした。売主の方が事前に専門業者に依頼して耐震診断をしてくださっていたので、購入前に「この物件がどの基準で建てられているか」を把握した上で判断できました。後から「2000年問題」を知ったときも、診断結果があったので冷静に対処できました。</p>
+      </div>
+      <div class="warn-box">
+        <div class="warn-title">⚠️ 旧耐震基準物件を買う場合は</div>
+        <p>住宅ローン減税や地震保険の優遇が受けられないことがある。耐震診断＋補強工事で数十万〜数百万円の追加コストを見込んでおくこと。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="point2">
+    <div class="point-card">
+      <div class="point-num">2</div>
+      <div class="point-title">シロアリと腐朽は「見えない部分」に潜む <span class="badge badge-danger">要注意</span></div>
+      <p>木造の築古住宅で最も怖いのが、<strong>シロアリ被害と木材の腐朽</strong>です。内装がきれいにリフォームされていても、床下・柱・土台が深刻なダメージを受けているケースがあります。</p>
+      <ul class="checklist">
+        <li><span class="check-icon">✓</span>内覧時に床を歩いてみて「ぶよぶよ」「たわみ」がないか確認</li>
+        <li><span class="check-icon">✓</span>床下収納や点検口から床下をのぞいて湿気・腐りを確認</li>
+        <li><span class="check-icon">✓</span>過去のシロアリ駆除記録・防腐処理の有無を売主に確認</li>
+        <li><span class="check-icon">✓</span>浴室まわり・台所まわりは特に湿気が多く要注意</li>
+      </ul>
+      <div class="experience-box">
+        <p>我が家の場合、売主の方が引き渡し前にシロアリ専門業者による調査と予防処置をやってくださっていました。しかも5年間の保証書付き。床を自分で剥がしたわけでもなく、購入時点でそこまで整えてもらえたのは正直ラッキーだったと思います。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="point3">
+    <div class="point-card">
+      <div class="point-num">3</div>
+      <div class="point-title">再建築不可物件という致命的なリスク <span class="badge badge-danger">絶対確認</span></div>
+      <p>「相場より明らかに安い物件」を見つけたとき、まず疑うべきが<strong>再建築不可物件</strong>です。火事や地震で建物が倒壊しても、新たに家を建てられない土地のことで、資産価値がほぼゼロになるリスクがあります。</p>
+      <h3>再建築不可になる主な理由</h3>
+      <ul class="checklist">
+        <li class="danger"><span class="check-icon danger">×</span>敷地が建築基準法上の道路に接していない</li>
+        <li class="danger"><span class="check-icon danger">×</span>道路との接道幅が2m未満（旗竿地などで多い）</li>
+        <li class="danger"><span class="check-icon danger">×</span>前面道路の幅員が4m未満（私道や古い路地）</li>
+      </ul>
+      <p>売却するときも買い手が極めて少なく、将来的にお荷物になりかねません。<em>「なんでこんなに安いんだろう」と思ったら、最初に再建築不可を疑ってください。</em></p>
+      <div class="warn-box">
+        <div class="warn-title">📋 重要事項説明書で必ず確認する項目</div>
+        <p>「接道義務」「建築確認の取得状況」「前面道路の種別・幅員」。不動産会社に口頭で確認するだけでなく、書面で必ず確認すること。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="point4">
+    <div class="point-card">
+      <div class="point-num">4</div>
+      <div class="point-title">リフォーム費用は「買値」と同額を覚悟する <span class="badge badge-warn">資金計画</span></div>
+      <p>「安く買ってリノベ」の落とし穴がここです。築古住宅のフルリフォームは、<strong>30年で約1,000万円かかる</strong>という試算もあります。</p>
+      <h3>見落としがちな費用項目</h3>
+      <ul class="checklist">
+        <li><span class="check-icon">✓</span>屋根・外壁の修繕（防水・塗装）：50〜200万円</li>
+        <li><span class="check-icon">✓</span>給排水管の交換（老朽化した鉄管）：30〜100万円</li>
+        <li><span class="check-icon">✓</span>断熱改修（床・壁・天井）：50〜150万円</li>
+        <li><span class="check-icon">✓</span>耐震補強：50〜150万円</li>
+        <li><span class="check-icon">✓</span>電気配線・分電盤の更新：20〜50万円</li>
+      </ul>
+      <div class="experience-box">
+        <p>我が家は購入価格がそれほど高くなかった分、リフォームを長期的に自分でやっていくことを最初から決めていました。DIYで断熱材を入れたり、壁紙を貼ったりすることで費用をかなり抑えています。でも材料費・工具代・時間のコストをトータルで考えると、「安く買えた」という実感はまだ薄い。資金計画は買う前にちゃんと立てておくべきでした。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="point5">
+    <div class="point-card">
+      <div class="point-num">5</div>
+      <div class="point-title">住宅ローン審査は築古に厳しい <span class="badge badge-warn">お金</span></div>
+      <p>築古住宅は、住宅ローンの審査で不利になりやすい側面があります。銀行は「担保評価」をもとに融資額を決めるため、建物の価値が低い物件は借りられる額が少なくなるのです。</p>
+      <ul class="checklist">
+        <li class="danger"><span class="check-icon danger">!</span>旧耐震基準（1981年以前）の物件はローン審査が通りにくい銀行がある</li>
+        <li class="danger"><span class="check-icon danger">!</span>木造住宅の法定耐用年数は22年。築22年超えは担保評価がゼロとなる場合も</li>
+        <li><span class="check-icon">✓</span>住宅ローン減税は「築年数・耐震基準」の要件あり（要確認）</li>
+        <li><span class="check-icon">✓</span>フラット35は独自の技術基準を設けており、築古でも利用できるケースあり</li>
+      </ul>
+      <div class="experience-box">
+        <p>私はローン選びに複数の金融機関の金利・条件を一括比較しました。結果、ネット銀行が金利面で圧倒的に有利でした。ただし、ネット銀行は審査基準がやや厳しめな印象です。築古物件は担保評価が低くなるため、収入・勤続年数・他の借入状況を事前に整理した上で申込むのが賢明です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="point6">
+    <div class="point-card">
+      <div class="point-num">6</div>
+      <div class="point-title">境界線と私道の問題は必ず書面で確認 <span class="badge badge-warn">法律</span></div>
+      <p>「お隣との境界は口約束で決まってる」——古い住宅ではこういったケースが意外と多いです。世代交代で所有者が変わると、境界線トラブルに発展することもあります。</p>
+      <ul class="checklist">
+        <li><span class="check-icon">✓</span>境界標（コンクリート杭・金属鋲など）が現地で確認できるか</li>
+        <li><span class="check-icon">✓</span>測量図（確定測量図）が存在するか</li>
+        <li><span class="check-icon">✓</span>私道負担がある場合、通行権・掘削権が書面で保証されているか</li>
+        <li><span class="check-icon">✓</span>隣家との越境（木の枝・塀・雨どいなど）がないか</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="point7">
+    <div class="point-card">
+      <div class="point-num">7</div>
+      <div class="point-title">ホームインスペクションは必須の「保険」 <span class="badge badge-info">強く推奨</span></div>
+      <p>ホームインスペクション（住宅診断）とは、建物の専門家が雨漏り・シロアリ・構造上の問題などを診断するサービスです。費用は<strong>数万円〜十数万円</strong>程度。</p>
+      <ul class="checklist">
+        <li><span class="check-icon">✓</span>契約前（申込後・引き渡し前）のタイミングで実施するのが理想</li>
+        <li><span class="check-icon">✓</span>売主ではなく「買主自身が依頼する」のが鉄則</li>
+        <li><span class="check-icon">✓</span>報告書を値下げ交渉の根拠にも使える</li>
+        <li class="danger"><span class="check-icon danger">!</span>築30年以上の物件では「補修検討すべき箇所が約60%存在」というデータもある</li>
+      </ul>
+      <div class="experience-box">
+        <p>私の場合は、売主の方がご自身でホームインスペクションを手配してくださっていました。報告書を事前に共有してもらえたおかげで、購入前に建物の状態をある程度把握した上で判断できました。売主側から診断書が出てこない場合は、自分で手配することを強くお勧めします。</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>まとめ：購入前の確認リスト一覧</h2>
+    <table class="summary-table">
+      <tr>
+        <th>確認項目</th>
+        <th>確認方法</th>
+        <th>重要度</th>
+      </tr>
+      <tr>
+        <td>耐震基準（1981年・2000年）</td>
+        <td>建築確認済証・登記簿謄本で確認</td>
+        <td>🔴 最重要</td>
+      </tr>
+      <tr>
+        <td>シロアリ・腐朽の痕跡</td>
+        <td>内覧時に床・床下・水回りを確認</td>
+        <td>🔴 最重要</td>
+      </tr>
+      <tr>
+        <td>再建築不可か否か</td>
+        <td>重要事項説明書の接道義務を確認</td>
+        <td>🔴 最重要</td>
+      </tr>
+      <tr>
+        <td>リフォーム費用の概算</td>
+        <td>複数業者から見積もりを取る</td>
+        <td>🟡 重要</td>
+      </tr>
+      <tr>
+        <td>住宅ローンの事前審査</td>
+        <td>複数金融機関に打診</td>
+        <td>🟡 重要</td>
+      </tr>
+      <tr>
+        <td>境界・私道の権利関係</td>
+        <td>確定測量図・重要事項説明書で確認</td>
+        <td>🟡 重要</td>
+      </tr>
+      <tr>
+        <td>ホームインスペクション</td>
+        <td>買主側で専門家に依頼</td>
+        <td>🟡 重要</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>最後に：それでも築古住宅は「あり」だと思う理由</h2>
+    <p>ここまで怖いことばかり書いてきましたが、私は築古住宅の購入を後悔していません。それどころか、楽しんでいます。</p>
+    <p>注意点を知った上で選んだ築古住宅は、新築にはない「自分でつくる余白」があります。壁を開けて断熱材を入れる。床を貼り替えて体に優しい無垢材にする。子供部屋をピンク色に仕上げる——そういった「自分の家を育てる」感覚は、既製品の新築では味わえないものです。</p>
+    <p>大切なのは、<strong>「安いから」という理由だけで飛びつかないこと</strong>。リスクを把握した上で、それでも「この家に住みたい」と思えるなら、築古住宅はとても豊かな選択肢です。</p>
+    <p><strong>新築の壁に落書きされた日には、ショックはエグい（笑）</strong>。「傷がついてもどうせリノベするし」というゆとりは、築古住宅ならではの精神的なメリットだと思っています。</p>
+    <p>この記事が、あなたの家選びの参考になれば嬉しいです。</p>
+  </section>
+
+  <div class="cta-box">
+    <h3>📖 DIYリノベの実録はブログで公開中</h3>
+    <p>断熱工事・壁紙張り・外構まで、実際にかかった費用と失敗談を正直に公開しています。</p>
+    <a href="/blog/" class="cta-btn">ブログ記事を読む →</a>
+  </div>
+
+  <div class="profile-box">
+    <div class="profile-avatar">🔨</div>
+    <div>
+      <div class="profile-name">DIYパパ（パパの日曜工務店）</div>
+      <p class="profile-desc">山梨県在住。2023年に築35年の木造住宅を購入し、週末DIYでリノベーション中。断熱・子供部屋・床貼りなどの施工記録を発信。本業は卸売り営業マン。「お金をかけずに理想の家に近づける」をテーマに活動中。</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© パパの日曜工務店 | 築古住宅DIYリノベ記録</p>
+  <p style="margin-top:8px; font-size:11px;">※本記事の内容は筆者の個人的な体験・調査に基づくものです。不動産購入にあたっては必ず専門家にご相談ください。</p>
+</footer>
+
+</body>
+</html>
