@@ -8,11 +8,13 @@ from typing import Optional
 
 class TokenLimitError(Exception):
     """Raised when the prompt exceeds the model's token limit."""
+
     pass
 
 
 class RateLimitError(Exception):
     """Raised when the API rate/quota limit is exceeded."""
+
     pass
 
 

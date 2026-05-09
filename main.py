@@ -22,7 +22,9 @@ def parse_args() -> argparse.Namespace:
         "--interactive", "-i", action="store_true", help="Interactive chat mode"
     )
     parser.add_argument(
-        "--count-tokens", action="store_true", help="Count tokens in the prompt and exit"
+        "--count-tokens",
+        action="store_true",
+        help="Count tokens in the prompt and exit",
     )
     return parser.parse_args()
 
