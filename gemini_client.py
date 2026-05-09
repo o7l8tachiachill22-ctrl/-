@@ -2,7 +2,20 @@
 
 import os
 import google.generativeai as genai
+import google.api_core.exceptions
 from typing import Optional
+
+
+class TokenLimitError(Exception):
+    """Raised when the prompt exceeds the model's token limit."""
+
+    pass
+
+
+class RateLimitError(Exception):
+    """Raised when the API rate/quota limit is exceeded."""
+
+    pass
 
 
 def configure(api_key: Optional[str] = None) -> None:
@@ -10,6 +23,12 @@ def configure(api_key: Optional[str] = None) -> None:
     if not key:
         raise ValueError("GEMINI_API_KEY is not set")
     genai.configure(api_key=key)
+
+
+def count_tokens(prompt: str, model: str = "gemini-1.5-flash") -> int:
+    model_instance = genai.GenerativeModel(model)
+    result = model_instance.count_tokens(prompt)
+    return result.total_tokens
 
 
 def chat(
@@ -22,8 +41,15 @@ def chat(
         kwargs["system_instruction"] = system_instruction
 
     model_instance = genai.GenerativeModel(model, **kwargs)
-    response = model_instance.generate_content(prompt)
-    return response.text
+    try:
+        response = model_instance.generate_content(prompt)
+        return response.text
+    except google.api_core.exceptions.InvalidArgument as e:
+        if "token" in str(e).lower():
+            raise TokenLimitError(str(e)) from e
+        raise
+    except google.api_core.exceptions.ResourceExhausted as e:
+        raise RateLimitError(str(e)) from e
 
 
 def stream_chat(
@@ -36,9 +62,16 @@ def stream_chat(
         kwargs["system_instruction"] = system_instruction
 
     model_instance = genai.GenerativeModel(model, **kwargs)
-    for chunk in model_instance.generate_content(prompt, stream=True):
-        if chunk.text:
-            yield chunk.text
+    try:
+        for chunk in model_instance.generate_content(prompt, stream=True):
+            if chunk.text:
+                yield chunk.text
+    except google.api_core.exceptions.InvalidArgument as e:
+        if "token" in str(e).lower():
+            raise TokenLimitError(str(e)) from e
+        raise
+    except google.api_core.exceptions.ResourceExhausted as e:
+        raise RateLimitError(str(e)) from e
 
 
 def list_models() -> list[str]:

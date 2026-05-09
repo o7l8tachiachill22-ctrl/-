@@ -21,6 +21,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--interactive", "-i", action="store_true", help="Interactive chat mode"
     )
+    parser.add_argument(
+        "--count-tokens",
+        action="store_true",
+        help="Count tokens in the prompt and exit",
+    )
     return parser.parse_args()
 
 
@@ -69,17 +74,29 @@ def main() -> None:
         print("Error: provide a prompt or use --interactive mode.", file=sys.stderr)
         sys.exit(1)
 
-    if args.stream:
-        for chunk in gemini_client.stream_chat(
-            args.prompt, model=args.model, system_instruction=args.system
-        ):
-            print(chunk, end="", flush=True)
-        print()
-    else:
-        result = gemini_client.chat(
-            args.prompt, model=args.model, system_instruction=args.system
-        )
-        print(result)
+    if args.count_tokens:
+        count = gemini_client.count_tokens(args.prompt, model=args.model)
+        print(f"Token count: {count}")
+        return
+
+    try:
+        if args.stream:
+            for chunk in gemini_client.stream_chat(
+                args.prompt, model=args.model, system_instruction=args.system
+            ):
+                print(chunk, end="", flush=True)
+            print()
+        else:
+            result = gemini_client.chat(
+                args.prompt, model=args.model, system_instruction=args.system
+            )
+            print(result)
+    except gemini_client.TokenLimitError as e:
+        print(f"Error: prompt exceeds token limit. {e}", file=sys.stderr)
+        sys.exit(1)
+    except gemini_client.RateLimitError as e:
+        print(f"Error: API rate/quota limit exceeded. {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
