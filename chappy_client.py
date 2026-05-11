@@ -83,6 +83,4 @@ def interactive_chat(model: str, system_instruction: Optional[str] = None) -> No
 
 
 def list_models() -> list[str]:
-    return sorted(
-        m.id for m in _get_client().models.list() if m.id.startswith("gpt")
-    )
+    return sorted(m.id for m in _get_client().models.list() if m.id.startswith("gpt"))

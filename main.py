@@ -13,9 +13,7 @@ def parse_args() -> argparse.Namespace:
         description="Google Gemini API / チャッピー (ChatGPT) CLI"
     )
     parser.add_argument("prompt", nargs="?", help="Prompt to send")
-    parser.add_argument(
-        "--model", default="gemini-1.5-flash", help="Model to use"
-    )
+    parser.add_argument("--model", default="gemini-1.5-flash", help="Model to use")
     parser.add_argument("--system", help="System instruction")
     parser.add_argument("--stream", action="store_true", help="Stream the response")
     parser.add_argument(
@@ -25,7 +23,9 @@ def parse_args() -> argparse.Namespace:
         "--interactive", "-i", action="store_true", help="Interactive chat mode"
     )
     parser.add_argument(
-        "--chappy", action="store_true", help="Use チャッピー (OpenAI ChatGPT) instead of Gemini"
+        "--chappy",
+        action="store_true",
+        help="Use チャッピー (OpenAI ChatGPT) instead of Gemini",
     )
     return parser.parse_args()
 
